@@ -4,13 +4,13 @@
 
 /* ---------- ✏️ PERSONALIZE AQUI ✏️ ---------- */
 const CONFIG = {
-  apelido: "meu amor",          // como você a chama
+  apelido: "Mozi",          // como você a chama
   remetente: "",                // seu nome (opcional; deixe "" para omitir)
   musica: "assets/audio/musica.mp3", // caminho do áudio (só use se tiver autorização)
   fotos: [
-    { src: "assets/images/foto1.jpg", titulo: "Um dos meus momentos favoritos",
+    { src: "assets/images/foto1.jpg", titulo: "Dormir com vc é um dos meus momentos favoritos",
       legenda: "Existem momentos simples que acabam se tornando especiais só porque estamos ao lado de alguém que faz tudo ter um significado diferente." },
-    { src: "assets/images/foto2.jpg", titulo: "Uma lembrança que guardo com carinho",
+    { src: "assets/images/foto2.jpg", titulo: "Uma das lembranças que guardo com carinho",
       legenda: "Entre tantas coisas que a vida pode nos proporcionar, conhecer você e construir nossas próprias lembranças é algo pelo qual sou muito grato." },
     { src: "assets/images/foto3.jpg", titulo: "E que venham muitos outros capítulos",
       legenda: "Que a vida ainda nos presenteie com muitos momentos bonitos, novas histórias, risadas inesperadas e lembranças que mereçam ser guardadas para sempre." }
