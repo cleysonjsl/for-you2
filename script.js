@@ -8,7 +8,7 @@ const CONFIG = {
   remetente: "",                // seu nome (opcional; deixe "" para omitir)
   musica: "assets/audio/musica.mp3", // caminho do áudio (só use se tiver autorização)
   fotos: [
-    { src: "assets/images/foto.JPG", titulo: "Dormir com vc é um dos meus momentos favoritos",
+    { src: "assets/images/foto1.JPG", titulo: "Dormir com vc é um dos meus momentos favoritos",
       legenda: "Existem momentos simples que acabam se tornando especiais só porque estamos ao lado de alguém que faz tudo ter um significado diferente." },
     { src: "assets/images/foto2.jpg", titulo: "Uma das lembranças que guardo com carinho",
       legenda: "Entre tantas coisas que a vida pode nos proporcionar, conhecer você e construir nossas próprias lembranças é algo pelo qual sou muito grato." },
