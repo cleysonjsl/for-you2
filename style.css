@@ -95,4 +95,8 @@ h1,h2{font-size:clamp(1.4rem,5.5vw,2rem);line-height:1.35;color:var(--vermelho)}
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .floaters{display:none}
+  /* botão inicial com música */
+.start{display:flex;flex-direction:column;align-items:center;gap:10px}
+.sub{font-family:var(--hand);font-size:.9rem;opacity:.65}
+
 }
