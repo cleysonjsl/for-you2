@@ -129,22 +129,51 @@ function confetti() {
     box.append(s);
   }
 })();
-
-/* ----- Música (só toca após clique; funciona sem o arquivo) ----- */
+/* ----- Música (um único elemento de áudio; só toca após clique) ----- */
 const mBtn = $("#music"), toast = $("#toast");
-let audio = null, playing = false;
-function say(t) { toast.textContent = t; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 3000); }
+const MSG_TAP = "Toque no ícone musical para ouvir a trilha ♡";
+const MSG_NONE = "A música não está disponível agora ♡";
+let audio = null;      // elemento de áudio único, criado uma vez e reaproveitado
+let playing = false;   // está tocando agora?
+let started = false;   // já começou com sucesso alguma vez? (evita reiniciar ao navegar)
+let toastTimer = null;
+
+function say(t) {
+  toast.textContent = t; toast.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 4500);
+}
 function setUi(on) {
   playing = on; mBtn.classList.toggle("on", on); mBtn.setAttribute("aria-pressed", on);
   mBtn.setAttribute("aria-label", on ? "Pausar música" : "Tocar música");
   $("#musicLabel").textContent = on ? "pausar" : "♪ música";
 }
+function getAudio() {
+  if (!CONFIG.musica) return null;
+  if (!audio) { audio = new Audio(CONFIG.musica); audio.loop = true; audio.volume = 0.4; }
+  return audio;
+}
+/* Chame SEMPRE direto de um clique (exigência dos navegadores). */
+function playMusic() {
+  const a = getAudio();
+  if (!a) { setUi(false); return say(MSG_NONE); }
+  const fail = err => {
+    setUi(false);
+    const missing = a.error || (err && err.name === "NotSupportedError");
+    if (a.error) audio = null;          // arquivo com erro: recria o elemento na próxima tentativa
+    say(missing ? MSG_NONE : MSG_TAP);  // nunca bloqueia a experiência
+  };
+  try {
+    const p = a.play();
+    if (p && typeof p.then === "function") p.then(() => { started = true; setUi(true); }).catch(fail);
+    else { started = true; setUi(true); }
+  } catch (err) { fail(err); }
+}
+
+/* Botão inicial: começa a música no 1º clique; a navegação (data-go) segue normalmente */
+$("#start").addEventListener("click", () => { if (!started) playMusic(); });
+
+/* Controle de pausar/retomar (sempre disponível) */
 mBtn.addEventListener("click", () => {
-  if (!CONFIG.musica) return say("A música não está disponível agora ♡");
-  if (!audio) {
-    audio = new Audio(CONFIG.musica); audio.loop = true; audio.volume = 0.4;
-    audio.addEventListener("error", () => { setUi(false); audio = null; say("A música não está disponível agora ♡"); });
-  }
-  if (playing) { audio.pause(); setUi(false); }
-  else audio.play().then(() => setUi(true)).catch(() => { setUi(false); say("A música não está disponível agora ♡"); });
+  if (playing && audio) { audio.pause(); setUi(false); }
+  else playMusic();
 });
