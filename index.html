@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For You.exe — Hoje, o mundo celebra você</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="floaters" aria-hidden="true"></div>
+
+<!-- Controle discreto de música -->
+<button id="music" class="music" aria-label="Tocar música" aria-pressed="false">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="musicLabel">♪ música</span>
+</button>
+<p id="toast" class="toast" role="status" aria-live="polite"></p>
+
+<main>
+  <!-- ETAPA 1 -->
+  <section class="screen active" id="s1" aria-labelledby="t1">
+    <div class="gift" aria-hidden="true">🎁</div>
+    <h1 id="t1" class="hand">Preparei uma pequena surpresa para alguém muito especial...</h1>
+    <button class="btn" data-go="2">Descobrir minha surpresa ♡</button>
+  </section>
+
+  <!-- ETAPA 2 -->
+  <section class="screen" id="s2" aria-labelledby="t2">
+    <div class="envelope" id="envelope" aria-hidden="true">
+      <div class="flap"></div><div class="card"><span class="hand">♡</span></div><div class="front"></div>
+    </div>
+    <p id="t2" class="lead">Hoje é o seu dia. E eu não poderia deixar essa data passar sem preparar algo só seu.</p>
+    <button class="btn" data-go="3">Continuar ♡</button>
+  </section>
+
+  <!-- ETAPA 3 -->
+  <section class="screen" id="s3" aria-labelledby="t3">
+    <h2 id="t3" class="hand">Nossa pequena coleção de memórias</h2>
+    <p class="hint">Toque em uma foto para ampliar</p>
+    <div class="album" id="album"></div>
+    <button class="btn" data-go="4">Ler minha carta ♡</button>
+  </section>
+
+  <!-- ETAPA 4 -->
+  <section class="screen" id="s4" aria-labelledby="t4">
+    <h2 id="t4" class="sr">Carta de aniversário</h2>
+    <article class="letter" id="letter" tabindex="0" aria-label="Carta. Toque para mostrar o texto completo.">
+      <p class="hand to" id="letterTo"></p>
+      <div class="ink"><div class="ghost" id="ghost" aria-hidden="false"></div><div class="typed" id="typed" aria-hidden="true"></div></div>
+    </article>
+    <p class="hint" id="letterHint">Toque na carta para revelar tudo</p>
+    <button class="btn" id="toFinal" data-go="5">Continuar ♡</button>
+  </section>
+
+  <!-- ETAPA 5 -->
+  <section class="screen" id="s5" aria-labelledby="t5">
+    <h2 id="t5" class="big hand">FELIZ ANIVERSÁRIO! ❤️</h2>
+    <p class="lead" id="fText"></p>
+    <p class="lead soft" id="fText2"></p>
+    <p class="hand sign" id="fSign"></p>
+    <div class="row">
+      <button class="btn ghostbtn" data-go="3">Rever memórias</button>
+      <button class="btn" data-go="1">Recomeçar</button>
+    </div>
+  </section>
+</main>
+
+<!-- Visualização ampliada -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+  <button class="close" id="lbClose" aria-label="Fechar">✕</button>
+  <div id="lbBody"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
